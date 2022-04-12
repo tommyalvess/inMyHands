@@ -24,7 +24,6 @@ export function Tarefa(){
     const db = getFirestore();
     const keyGenerator = () => '_' + Math.random().toString(36).substr(2, 9);
 
-
     async function gerarListaConta() {
         const datas = [] as any;
         const q = query(collection(db, "users", "11979589357", "savemoney", "transaction", "faxina"), 

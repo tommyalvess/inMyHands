@@ -54,18 +54,24 @@ export function Home(){
                     <RectButton style={{borderRadius: 18}} onPress={() => handleToPage("Tarefa")}>
                         <BoxItem title="Tarefa diaria" icon="check-square" />
                     </RectButton>
-                    <RectButton style={{borderRadius: 18}} onPress={() => handleToPage("Compras")}>
-                        <BoxItem title="Lista de Compra" icon="shopping-cart" />
+                    <RectButton style={{borderRadius: 18}} onPress={() => handleToPage("Mercado")}>
+                        <BoxItem title="Lista de Mercado" icon="shopping-basket" />
                     </RectButton>
                 </View>
 
                 <View style={estilo.contentBox}>
-                    <BoxItem title="Lista de Mercado" icon="shopping-basket" />
-                    <BoxItem title="Orçamentos" icon="clipboard-list" />
+                    <RectButton style={{borderRadius: 18}} onPress={() => handleToPage("Compras")}>
+                        <BoxItem title="Lista de Compra" icon="shopping-cart" />
+                    </RectButton>
+                    <RectButton style={{borderRadius: 18}} onPress={() => handleToPage("Reparo")}>
+                        <BoxItem title="Reparo na Casa" icon="hammer" />
+                    </RectButton>
                 </View>
 
                 <View style={estilo.contentBox}>
-                    <BoxItem title="Reparo na Casa" icon="hammer" />
+                    <RectButton style={{borderRadius: 18}} onPress={() => handleToPage("Orcamento")}>
+                        <BoxItem title="Orçamentos" icon="clipboard-list" />
+                    </RectButton>
                 </View>
 
             </View>

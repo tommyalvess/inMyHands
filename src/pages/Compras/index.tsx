@@ -1,4 +1,3 @@
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { 
     View, 
@@ -17,7 +16,6 @@ import { estilo } from "./styles";
 import { theme } from "../../global/style/theme";
 
 import { query, getFirestore, addDoc, collection, getDocs, where, writeBatch, doc, deleteDoc } from "firebase/firestore";
-import { ScrollView } from "react-native-gesture-handler";
 import { ListItemConta } from "../../components/ListItemConta";
 import { ListDivider } from "../../components/ListDivider";
 
@@ -47,7 +45,8 @@ export function Compras(){
               
             await addDoc(collection(db, "users", "11979589357", "savemoney", "transaction", "compras"), {
                 id: keyGenerator(),
-                desc: textInput.trim()
+                desc: textInput.trim(),
+                check: false
             });
 
         } catch (error) {
@@ -87,6 +86,7 @@ export function Compras(){
     useEffect(() => {
         renderData()
     },[])
+    
     return (
         <SafeAreaView style={{flex:1}}>
             <View style={estilo.container}>

@@ -11,6 +11,9 @@ import { Faxina } from '../pages/Faxina';
 import { Compras } from '../pages/Compras';
 import { UpdateFaxina } from '../pages/UpdateFaxina';
 import { Tarefa } from '../pages/Tarefa';
+import { Mercado } from '../pages/Mercado';
+import { Orcamentos } from '../pages/Orcamento';
+import { Reparo } from '../pages/Reparo';
 
 const stackRoutes = createStackNavigator();
 
@@ -78,7 +81,22 @@ const AppRoutes: React.FC = () => (
         <stackRoutes.Screen
             name="Tarefa"
             component={Tarefa}
-        />     
+        />    
+
+        <stackRoutes.Screen
+            name="Mercado"
+            component={Mercado}
+        />   
+
+        <stackRoutes.Screen
+            name="Orcamentos"
+            component={Orcamentos}
+        />  
+
+        <stackRoutes.Screen
+            name="Reparo"
+            component={Reparo}
+        />  
 
 
     </stackRoutes.Navigator>
