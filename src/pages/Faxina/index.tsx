@@ -589,10 +589,10 @@ export function Faxina(){
   }
 
   useEffect(() => {
-    dataOrderFilterd();   
+    //dataOrderFilterd();   
 
     const unsubscribe = navigation.addListener('focus', () => {
-      dataOrderFilterd()
+      //dataOrderFilterd()
     });
     return unsubscribe;
 

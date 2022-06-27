@@ -108,7 +108,7 @@ export function SaveMoney(){
             var mesNow = moment(dataFinal).format("MM")  
             var anoNow = moment(dataFinal).format("YYYY")
 
-            const q = query(collection(database, "users", "11979589357", "savemoney", "transaction", "item"),  where("mes", "==", mesNow), where("ano", "==" ,anoNow));
+            const q = query(collection(database, "users", "11979589357", "savemoney", "transaction", "item"), where("mes", "==", mesNow), where("ano", "==" ,anoNow));
 
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
@@ -117,6 +117,8 @@ export function SaveMoney(){
             });
             setTotal(data.length)
             setData(datas); 
+
+            //Validar quando tudo for carregado
 
             somaReceitas()
             somarDividasMes()
@@ -138,13 +140,14 @@ export function SaveMoney(){
     async function detectChanges() {
         try {
             const q = query(collection(database, "users", "11979589357", "savemoney", "transaction", "item"));
-            const unsubscribe = onSnapshot(q, (snapshot) => {
+            onSnapshot(q, (snapshot) => {
+                
                 snapshot.docChanges().forEach((change) => {
                     if (change.type === "modified") {
                         console.log("modified");   
-                                       
+                        
+                        //Validar quando tudo for carregado
                         meuSaldoAtual()
-
                         somaReceitas()
                         somarDividasMes()
                         somarDividaAtual()
@@ -155,9 +158,9 @@ export function SaveMoney(){
                 });
                 
             });
+            
         } catch (error) {
             console.log("SaveMoney - detectChanges - erro: "+error);
-            
         }
     }
 
@@ -641,9 +644,6 @@ export function SaveMoney(){
     }
 
     useEffect(() => {
-        dataOrderFilterd()
-        detectChanges()
-        sobrouAnterior()
 
         moment.updateLocale('pt-br', localization);
         
@@ -651,10 +651,13 @@ export function SaveMoney(){
             dateNow = moment().locale('pt').format('YYYY-MM-DD');
             setDataFinal(dateNow)
         }      
+
+        dataOrderFilterd()
+        detectChanges()
+        sobrouAnterior()
     
         opemModal()
-        
-        
+                
         const unsubscribe = navigation.addListener('focus', () => {
             dataOrderFilterd()
         });

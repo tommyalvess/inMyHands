@@ -40,7 +40,7 @@ var radio_props_modal = [
     {label: 'Gastos', value: 7 },
 ];
 
-export type Transaction = [
+export type Transaction = 
     {
         id: number;
         title: string;
@@ -58,7 +58,7 @@ export type Transaction = [
         mes: string;
     
     }   
-]
+
 
 export function AddTransition(){
 
@@ -73,7 +73,7 @@ export function AddTransition(){
     const [tag, setTag] = useState('')
     const [dataMaskedText, setDataMaskedText] = useState(moment().format('DD/MM/YYYY'))
     const [valorMaskedText, setValorMaskedText] = useState('')
-    const [parcela, setParcela] = useState() as any
+    const [parcela, setParcela] = useState(0)
     const [tipo, setTipo] = useState('')
     const [conta, setConta] = useState('')
     const [pago, setPago] = useState(false)
@@ -239,7 +239,7 @@ export function AddTransition(){
         var newvalor = valorMaskedText.replace(".", "").replace(",", ".").replace("R$", "").toString()
         var newdata = dataMaskedText.replaceAll("/", "-")
         var dataformatada =  moment(newdata, "DD-MM-YYYY").format('YYYY-MM-DD')
-        var newparcela = parcela == null ? 0 : parcela;
+        var newparcela = parcela.toString().length == 0 ? 0 : parcela;
 
         if (newparcela > 365) {
            setModalInfVisible(!isModalInfVisible)
@@ -252,6 +252,9 @@ export function AddTransition(){
                 var novoData = moment(dataformatada).add(index, 'month').format('YYYY-MM-DD')  
                 var novoAno = moment(dataformatada).add(index, 'month').format('YYYY')  
                 var novoMes = moment(dataformatada).add(index, 'month').format('MM')  
+
+                console.log("Qual tipo: "+tipo);
+                
 
                 if(tipo == "Despesa"){
                     idNotification = await schedulePushNotification("Dia de pagar a dívida", "Pague: " + title, parseInt(day), parseInt(novoMes))
@@ -372,6 +375,7 @@ export function AddTransition(){
                 console.log("Salvo - Transferência");
             }
         }
+
        } catch (error) {
            console.log("AddTransition - handleToSave - error: " + error);
        }

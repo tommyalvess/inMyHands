@@ -28,13 +28,12 @@ export const estilo = StyleSheet.create({
     },
     boxAviso: {
       backgroundColor: '#fff',
-      width: '85%',
-      height: 55,
       justifyContent: 'center',
       borderRadius: 15,
       margin: 15,
       alignItems: 'center',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      paddingHorizontal:35
     }
     
 })

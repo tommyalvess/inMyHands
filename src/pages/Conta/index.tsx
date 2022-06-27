@@ -17,12 +17,10 @@ import { query, getFirestore, addDoc, collection, getDocs, where, writeBatch, do
 import { ListDivider } from "../../components/ListDivider";
 import { ListItemConta } from "../../components/ListItemConta";
 
-export type ItemConta = [
-    {
-        id: number;
-        desc: string;
-    }   
-]
+export type ItemConta = {
+    id: number;
+    desc: string;
+}
 
 
 export function Conta(){

@@ -16,13 +16,19 @@ type Props = TouchableOpacityProps & {
 
 export function ListItemConta({data,checkBox, ...rest}: Props){
 
-    const [checked, setChecked] = useState(false);
     const database = getFirestore();
     const batch = writeBatch(database);
     const [isChecked, setIsChecked] = useState(false);
 
     function isEnable(): void {
-        setChecked(!checked)
+        setIsChecked(!isChecked)
+        const listSave = [];
+
+        listSave.push(data.desc)
+
+        console.log(listSave);
+        
+        
         //updatepago(!data.pago)
     }
 
@@ -58,7 +64,7 @@ export function ListItemConta({data,checkBox, ...rest}: Props){
                     <Checkbox
                         style={{ borderColor: theme.colors.background}}
                         value={isChecked}
-                        onValueChange={setIsChecked}
+                        onValueChange={isEnable}
                         color={isChecked ? '#4630EB' : undefined}
                     />  
                 }

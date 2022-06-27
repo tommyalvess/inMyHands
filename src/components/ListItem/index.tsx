@@ -10,6 +10,7 @@ import { formatNumber } from '../../utils/moeda';
 import { Transaction } from '../../pages/AddTransition';
 
 import { getDocs,doc, documentId, query, collection, where, getFirestore, updateDoc, writeBatch } from "@firebase/firestore";
+import Checkbox from 'expo-checkbox';
 
 type Props = TouchableOpacityProps & {
     data: Transaction;
@@ -17,22 +18,22 @@ type Props = TouchableOpacityProps & {
 
 export function ListItem({data, ...rest}: Props){
 
-    const [checked, setChecked] = useState(data.pago);
+    const [isChecked, setIsChecked] = useState(data.pago);
+    
     const database = getFirestore();
-    var checado = data.pago
 
-    function isEnable(): void {
-        console.log(checado);
-        
-        setChecked(checked == true ? false:true)
-        updatepago(checked == true ? false:true)
-        
-        console.log(checado);
+    function isEnable(): void {  
+             
+        setIsChecked(!isChecked) 
+        updatepago(!isChecked) 
 
+        console.log(data.title + " " + isChecked);
 
     }
 
     async function updatepago(value:boolean) {
+        console.log("updatepago " + value);
+        
         const q = query(collection(database, "users", "11979589357", "savemoney", "transaction", "item"), where("id", "==", data.id));
         const querySnapshot = await getDocs(q);
         var idTrans;
@@ -48,6 +49,9 @@ export function ListItem({data, ...rest}: Props){
         await batch.commit();
 
     }
+
+    useEffect(() => {        
+    },[])
 
     return (
             <View style={estilo.content}>
@@ -85,15 +89,22 @@ export function ListItem({data, ...rest}: Props){
                     :
                     <Text style={estilo.txtValor}>R$ {formatNumber(data.valor)}</Text>
                     }
+                     {/* <Checkbox
+                        style={{ borderColor: theme.colors.background}}
+                        value={isChecked}
+                        onValueChange={isEnable}
+                        color={isChecked ? '#4630EB' : undefined}
+                        />   */}
                     <TouchableOpacity 
                         style={estilo.icon} 
                         onPress={isEnable}
                     >
                         <Feather  
-                            name={checked == true ? "check" : "x"}
-                            color={checked == false ? "red" : "black"}
+                            name={isChecked == true ? "check" : "x"}
+                            color={isChecked == false ? "red" : "black"}
                             size={19}
-                        />
+                        /> 
+                    
                    </TouchableOpacity>
                 </View>
             </View>            
