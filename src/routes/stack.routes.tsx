@@ -1,6 +1,5 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack'
-import { Home } from '../pages/Home';
 import { AddTransition } from '../pages/AddTransition';
 import { SaveMoney } from '../pages/SaveMoney';
 import { Conta } from '../pages/Conta';
@@ -14,6 +13,7 @@ import { Tarefa } from '../pages/Tarefa';
 import { Mercado } from '../pages/Mercado';
 import { Orcamentos } from '../pages/Orcamento';
 import { Reparo } from '../pages/Reparo';
+import { HomeV2 } from '../pages/HomeV2';
 
 const stackRoutes = createStackNavigator();
 
@@ -30,7 +30,7 @@ const AppRoutes: React.FC = () => (
 
         <stackRoutes.Screen
             name="Home"
-            component={Home}
+            component={HomeV2}
         />
 
         <stackRoutes.Screen
